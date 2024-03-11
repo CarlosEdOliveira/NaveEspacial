@@ -10,8 +10,12 @@ public class NaveCarga extends NaveEspacial {
 	}
 	
 	public void carregar(double carga) {
-		System.out.println("Carregando"+carga+"toneladas de carga na nave de carga");
-	}
+	       if (carga <= capacidadeCarga) {
+	            System.out.println("Carga de " + carga + " toneladas realizada com sucesso!");
+	        } else {
+	            System.out.println("Capacidade de carga excedida! Carga máxima: " + capacidadeCarga + " toneladas");
+	        }
+	    }
 	
 	public double getCapacidadeCarga() {
 		return capacidadeCarga;
@@ -20,25 +24,30 @@ public class NaveCarga extends NaveEspacial {
 	public void setCapacidadeCarga(double capacidadeCarga) {
 		this.capacidadeCarga = capacidadeCarga;
 	}
-
+	
 	@Override	
 	public void acelerar(double velocidade) {
-		
+		System.out.println("Aumentando propunção para: " + velocidade + "km/h" );
 		}
 	
 	@Override
 	public void desacelerar(double velocidade) {
-		
+		System.out.println("Reduzindo propunção para: " + velocidade + "km/h" );
 		}
 	
 	@Override
 	public void abastecer (double litro) {
-		
+		System.out.println("Abastecendo a nave com: " + litro + "L de combustivel");
 		}
 
 	@Override
 	public void viajar (double distancia) {
-		
+		System.out.println("Viajando :" + distancia + "km");
 		}
+
+	@Override
+	public String toString() {
+		return "NaveCarga [capacidadeCarga=" + capacidadeCarga + ", getCapacidadeCarga()=" + getCapacidadeCarga() + "]";
+	}
 	
 }

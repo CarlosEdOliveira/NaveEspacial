@@ -9,10 +9,15 @@ public class NavePassageiros extends NaveEspacial {
 		this.numeroPassageiros = numeroPassageiros;
 	}
 	
-	public void embarcar(int passageiros) {
-		System.out.println("Embarcando"+passageiros+"passageiros na nave.");
-	}
-	
+    public void embarcar(int passageiros) {
+        if (numeroPassageiros + passageiros <= numeroTripulantes) {
+            numeroPassageiros += passageiros;
+            System.out.println("Embarque de " + passageiros + " passageiros realizado com sucesso!");
+        } else {
+            System.out.println("Capacidade de passageiros excedida! Número máximo de passageiros: " + numeroTripulantes);
+        }
+    }
+
 	public int getNumeroPassageiros() {
 		return numeroPassageiros;
 	}
@@ -43,8 +48,9 @@ public class NavePassageiros extends NaveEspacial {
 
 	@Override
 	public String toString() {
-		return "navesPassageiros [numeroPassageiros=" + numeroPassageiros + "]";
+		return "NavePassageiros [numeroPassageiros=" + numeroPassageiros + ", getNumeroPassageiros()="
+				+ getNumeroPassageiros() + "]";
 	}
-	
-	
+
+
 }

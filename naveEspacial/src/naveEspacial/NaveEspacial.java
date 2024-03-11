@@ -1,11 +1,13 @@
 package naveEspacial;
 
 public abstract class NaveEspacial {
-
+	//atributos de nave
 	protected String nome;
 	protected double velocidadeMaxima;
 	protected int numeroTripulantes;
 	protected double combustivel;
+	protected double aceleracao;
+	protected double desaceleracao;
 	
 	public NaveEspacial(String nome, double velocidadeMaxima, int numeroTripulantes, double combustivel) {
 		this.nome = nome;
@@ -13,15 +15,60 @@ public abstract class NaveEspacial {
 		this.numeroTripulantes = numeroTripulantes;
 		this.combustivel = combustivel;
 	}
+	//métodos de nave
+	
+	 public void acelerar(double velocidade) {
+	        if (velocidade > 0) {
+	            if (combustivel >= (velocidade * aceleracao)) {
+	                combustivel -= velocidade * aceleracao;
+	                velocidadeMaxima += velocidade;
+	                System.out.println("Nave acelerada com sucesso!");
+	            } else {
+	                System.out.println("Combustível insuficiente para acelerar!");
+	            }
+	        } else {
+	            System.out.println("Velocidade inválida!");
+	        }
+	    }
+	
+	 public void desacelerar(double velocidade) {
+	        if (velocidade > 0) {
+	            if (velocidadeMaxima >= velocidade) {
+	                velocidadeMaxima -= velocidade;
+	                System.out.println("Nave desacelerada com sucesso!");
+	            } else {
+	                System.out.println("Velocidade a ser diminuida maior que a velocidade atual!");
+	            }
+	        } else {
+	            System.out.println("Velocidade inválida!");
+	        }
+	    }
+	
+	public void abastecer(double litros) {
+	  combustivel += litros;
+      System.out.println("Nave abastecida com " + litros + " unidades de combustivel!");
+  }
+	public void viajar(double distancia) {
+		double velocidadeAtual = 0;
+        double tempoViagem = 0;
 
-	public abstract void acelerar(double velocidade);
-	
-	public abstract void desacelerar(double velocidade);
-	
-	public abstract void abastecer(double litros);
-	
-	public abstract void viajar(double distancia);
-	
+        while (distancia > 0) {
+            if (combustivel >= (velocidadeAtual * aceleracao) * tempoViagem) {
+                combustivel -= (velocidadeAtual * aceleracao) * tempoViagem;
+                velocidadeAtual += aceleracao * tempoViagem;
+                if (velocidadeAtual > velocidadeMaxima) {
+                    velocidadeAtual = velocidadeMaxima;
+                }
+                distancia -= velocidadeAtual * tempoViagem;
+            } else {
+                tempoViagem = combustivel / ((velocidadeAtual * aceleracao) + (velocidadeMaxima * desaceleracao));
+                combustivel = 0;
+                distancia -= velocidadeMaxima * tempoViagem;
+            }
+        }
+
+        System.out.println("Viagem de " + distancia + " unidades concluída com sucesso!");
+    }
 	
 	public String getNome() {
 		return nome;
@@ -55,12 +102,13 @@ public abstract class NaveEspacial {
 		this.combustivel = combustivel;
 	}
 
-	
-	
 	@Override
 	public String toString() {
-		return "naveEspacial [nome=" + nome + ", velocidadeMaxima=" + velocidadeMaxima + ", numeroTripulantes="
-				+ numeroTripulantes + ", combustivel=" + combustivel + "]";
+		return "NaveEspacial [nome=" + nome + ", velocidadeMaxima=" + velocidadeMaxima + ", numeroTripulantes="
+				+ numeroTripulantes + ", combustivel=" + combustivel + ", aceleracao=" + aceleracao + ", desaceleracao="
+				+ desaceleracao + ", getNome()=" + getNome() + ", getVelocidadeMaxima()=" + getVelocidadeMaxima()
+				+ ", getNumeroTripulantes()=" + getNumeroTripulantes() + ", getCombustivel()=" + getCombustivel() + "]";
 	}
 
+	
 }

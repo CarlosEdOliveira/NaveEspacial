@@ -2,21 +2,23 @@ package naveEspacial;
 
 public class NaveCarga extends NaveEspacial {
 	private double capacidadeCarga;
+	private double carga;
 	
-	public NaveCarga( String nome, double velocidadeMaxima, int numeroTripulantes, double combustivel, double capacidadeCarga, double carga )
-	{
-		super(nome, velocidadeMaxima, numeroTripulantes, combustivel);
+	public NaveCarga(String nome, double velocidadeMaxima, int numeroTripulantes, double combustivel, double velocidade,
+			double distancia, double capacidadeCarga, double carga) {
+		super(nome, velocidadeMaxima, numeroTripulantes, combustivel, velocidade, distancia);
 		this.capacidadeCarga = capacidadeCarga;
+		this.carga = carga;
 	}
-	
-	public void carregar(double carga) {
-	       if (carga <= capacidadeCarga) {
-	            System.out.println("Carga de " + carga + " toneladas realizada com sucesso!");
-	        } else {
-	            System.out.println("Capacidade de carga excedida! Carga máxima: " + capacidadeCarga + " toneladas");
-	        }
-	    }
-	
+
+	public void carregar() {
+		if (carga <= capacidadeCarga) {
+			System.out.println("Carga de " + carga + " toneladas realizada com sucesso!");
+		} else {
+			System.out.println("Capacidade de carga excedida! Carga máxima: " + capacidadeCarga + " toneladas");
+		}
+	}
+
 	public double getCapacidadeCarga() {
 		return capacidadeCarga;
 	}
@@ -25,29 +27,51 @@ public class NaveCarga extends NaveEspacial {
 		this.capacidadeCarga = capacidadeCarga;
 	}
 	
-	@Override	
-	public void acelerar(double velocidade) {
-		System.out.println("Aumentando propunção para: " + velocidade + "km/h" );
-		}
-	
-	@Override
-	public void desacelerar(double velocidade) {
-		System.out.println("Reduzindo propunção para: " + velocidade + "km/h" );
-		}
-	
-	@Override
-	public void abastecer (double litro) {
-		System.out.println("Abastecendo a nave com: " + litro + "L de combustivel");
-		}
+	public double getCarga() {
+		return carga;
+	}
+
+	public void setCarga(double carga) {
+		this.carga = carga;
+	}
 
 	@Override
-	public void viajar (double distancia) {
-		System.out.println("Viajando :" + distancia + "km");
-		}
+	public double acelerar() {
+		// TODO Auto-generated method stub
+		return super.acelerar();
+	}
+
+	@Override
+	public double desacelerar() {
+		// TODO Auto-generated method stub
+		return super.desacelerar();
+	}
+
+	@Override
+	public double abastecer(double litros) {
+		// TODO Auto-generated method stub
+		return super.abastecer(litros);
+	}
+
+	@Override
+	public double viajar(double distancia) {
+		// TODO Auto-generated method stub
+		return super.viajar(distancia);
+	}
 
 	@Override
 	public String toString() {
-		return "NaveCarga [capacidadeCarga=" + capacidadeCarga + ", getCapacidadeCarga()=" + getCapacidadeCarga() + "]";
+		return "NaveCarga [capacidadeCarga=" + capacidadeCarga + ", carga=" + carga + ", nome=" + nome
+				+ ", velocidadeMaxima=" + velocidadeMaxima + ", numeroTripulantes=" + numeroTripulantes
+				+ ", combustivel=" + combustivel + ", velocidade=" + velocidade + ", distancia=" + distancia + "]";
 	}
-	
+
+
+
+
+
+
+
+ 
+
 }
